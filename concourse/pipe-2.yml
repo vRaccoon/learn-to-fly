@@ -1,0 +1,110 @@
+resource_types:
+  - name: k8s-resource
+    type: docker-image
+    source:
+      repository: jgriff/k8s-resource
+
+resources:
+  - name: r-git
+    type: git
+    icon: github
+    source:
+      uri: https://github.com/vRaccoon/learn-concourse.git
+      branch: master
+
+
+  - name: r-harbor
+    type: docker-image
+    icon: oci
+    source:
+      repository: harbor.vraccoon.lab/library/learn-to-fly
+      username: admin
+      password: Password123!
+      ca_certs:
+        - domain: harbor.vraccoon.lab
+          cert: |
+                    -----BEGIN CERTIFICATE-----
+                    MIIDUTCCAjmgAwIBAgIVAM62WHzfLCadYf0ugejAyBO0eCaaMA0GCSqGSIb3DQEB
+                    CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTEyMDIw
+                    MTEzOFoXDTI0MTEyMTIwMTEzOFowHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+                    dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC0EeKE1SMb58cH
+                    HHtavZN5cY0Ia4eCzPBlpUap7YZqKKUFI5BSUw4fXpGIqKYSzH3EVefrBx7JvqSh
+                    247ADN92RoiWaN31NGey1Hhk35m63tVQ+336AORP0vQzHexD1CeNGtE8w7GBsOEI
+                    XNuuvbY/zFbsxy29XpUYpUuBpQPGUwNR3fI5IgeTjf1HsRYq49EnAh8LfnYyH1r+
+                    I5OIUsNYx85fMS+/QEla+XfjvjAS6omwtr4A+VFQQJMMAnykHXial0J7+JjiyYyd
+                    GgmbSnrcXBSaWPmuTv7QbCtYSqO7eCs6GV9/lokR2q3ZyNtELo5vFPns06v4slMB
+                    CTKc4d+xAgMBAAGjgYMwgYAwHQYDVR0OBBYEFKhM9OHRYvNFFGgyYKR29zkvzVN5
+                    MB8GA1UdIwQYMBaAFKhM9OHRYvNFFGgyYKR29zkvzVN5MB0GA1UdJQQWMBQGCCsG
+                    AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+                    BjANBgkqhkiG9w0BAQsFAAOCAQEAl0Rnl1nRDCSUdHWy6BPxSWWEQwYoPd/Z2QBO
+                    vizn8AFn6YG0thscNfsuJW4Cz4UoDbkazmt9tybB9Wv8BVROfJdeucOdLtGd+4QU
+                    jWabPWoI0v2QqBg9Y/1h9w99Cm77i/57O+vtDpgbP1RL6yDdv3sznsx4xpor59Gi
+                    2crv5RwexJp/TzGfrlwfLWzgFJ1t2hhoTBZQXTXpOKA8/dP3p3+3W8uat3UvfnNL
+                    dF3mvm7+giRIk2Kl80sCyp5Poubuq+Qb95MUsR+CukpTUdpKFVBQhzWWUTt9cm5E
+                    PLCaQHLMrcjlpQlMzMu+EB4XB4gm1IeZnpxE2Gyio3AmWApfHQ==
+                    -----END CERTIFICATE-----
+ 
+
+
+
+  - name: r-k8s-cluster
+    type: k8s-resource
+    icon: kubernetes
+    source:
+      url: https://tkg-c1.vraccoon.lab:8443
+      token: eyJhbGciOiJSUzI1NiIsImtpZCI6Ik5FcFR0aE9YR2pacFlKWFB4Sm5MNFBLVW9HaHBPNGlPdlFfMGFoRUg3aFUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNhLWNvbmNvdXJzZS10b2tlbi1oODVkZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzYS1jb25jb3Vyc2UiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJmNDc0Mzk0NS0xNTQ4LTQ2MDQtYTY2YS03Nzk3YTIxNzhmOGEiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpzYS1jb25jb3Vyc2UifQ.ZNMh65KCr5_tdciA-yIoMGPVY7TQ-xrpveQ3tLDb8Tv-Ys-EBXg2B7H7vjeYDwI6y5rlzQy7t4iGO798C5KpkRtzET9NrclCzzyzTPXazZdWqvfq4vkIexyOQBESPLV5VJ05eN-nsG-krgp07ADrqoRCPXW4T3hQGtHgBYIdhE5T-WrGuDgjQMq5AVY-UWYh-vdj1WANd0ePhjtCXlIWi5hKFXGtxHOgPEWBXdm45RGte8kPkEncNXxggU28MdaP1QWdd2CNGFkAeZq1Rqi_WuTvO1Q_6clLNYzz7mZTdlKqW8d5JsMy5J-HJ1qddEtGfAgJh3sJ4Pe_2Fl0CUjwiQ
+      certificate_authority: |
+                                -----BEGIN CERTIFICATE-----
+                                MIIC+zCCAeOgAwIBAgIUTk0x/4jOgNuKF9L+CHwIo6xP9EkwDQYJKoZIhvcNAQEL
+                                BQAwDTELMAkGA1UEAxMCY2EwHhcNMjAxMTIxMjEwMTU5WhcNMjQxMTIxMjEwMTU5
+                                WjANMQswCQYDVQQDEwJjYTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+                                AM6AU+fod1Y6+UIgxV7TumyWl9KA18KPrAPNubbmXWtmgbODwwMHyAN2ILxey54N
+                                k5FQbyPzpoRXw9QuM4CXesDTddnD9HeazW9pAz4QqBbZpWNG3pm+7VmCcgLcaNGg
+                                aeWA8+Wzu/W8M4QDUOViemEMwapRsL+pYRLSHqiXhai5UiISlOSClaR3HhNWDFwj
+                                756awTKA46/nOTzGtZ82mY9Mdyo+/maAKbQIEpEoexeMVq20Q0wZPhhG90/u4ABL
+                                EVr4M8LN2wJLDDGj4R905OY2Va0/wMyKZM/gY80vvrYMn/Ggy9MuU3W3c0E57vXM
+                                59W3LXZN+KFu3ciNSBxmfyECAwEAAaNTMFEwHQYDVR0OBBYEFLpcrAFza6UHTSUz
+                                usNtvI4ZrayYMB8GA1UdIwQYMBaAFLpcrAFza6UHTSUzusNtvI4ZrayYMA8GA1Ud
+                                EwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAHos9S9l36kq7VPT7XUfPzUS
+                                YkfF2BoJvBSRVe+UuWoKbF9oeASpzUBvEZmi6nNYHgsX6ZbBVnkDPhenKs/n7YAN
+                                9svtxeG0lWYG982zFOaUTZxfXKE9eijA5yDrzEM1j3SsazuDG+yi5q240Hxozz23
+                                b17nD0OX7RZOhNuHfBgwO62rHzSL10ElXigCApva+KeEtUPJPK/JourSRQju9Edw
+                                5JauqehF8Jgua6EcIA5KFujBfmipfhM6iu8LPetgd8DGm+GuaxVPn1u2WhwHQaZJ
+                                uqGvpS5fz6Y0bgX6TrNsqeFh2ADwZIPcj7/8EerophOGIqD7eJ76GiKlRaLx+0M=
+                                -----END CERTIFICATE-----
+
+jobs:
+  - name: j-create-and-push-image
+    public: true
+    serial: true
+    plan:
+      - get: r-git
+        trigger: true
+      - put: r-harbor
+        params:
+          build: r-git/docker
+
+  - name: j-update-deployment
+    public: true
+    serial: true
+    plan:
+      - get: r-git
+        trigger: true
+        passed:
+          - j-create-and-push-image
+      - task: t-modify-deployment
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: mwendler/jq}
+          inputs:
+            - name: r-git
+          outputs:
+            - name: e-modified-deployment
+          run:
+            path: r-git/k8s/get-digest.sh
+      - put: r-k8s-cluster
+        params:
+          kubectl: apply -f e-modified-deployment/deployment.yml
+          namespace: default
