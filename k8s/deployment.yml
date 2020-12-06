@@ -1,28 +1,71 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
-    app: learn-to-fly-with-concourse
-  name: pod-learn-to-fly
-  namespace: default
+    app: learn-to-fly
+  name: learn-to-fly
 spec:
-  containers:
-  - image: harbor.vraccoon.lab/library/learn-to-fly@IMAGE
-    name: learn-to-fly-with-concourse
-    imagePullPolicy: Always
+  replicas: 1
+  selector:
+    matchLabels:
+      app: learn-to-fly
+  template:
+    metadata:
+      labels:
+        app: learn-to-fly
+    spec:
+      containers:
+      - image: harbor.vraccoon.lab/library/learn-to-fly@IMAGE
+        name: learn-to-fly
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: learn-to-fly-with-concourse
-  name: svc-learn-to-fly-with-concourse
+    app: learn-to-fly
+  name: svc-learn-to-fly
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
   selector:
-    app: learn-to-fly-with-concourse
+    app: learn-to-fly
   type: LoadBalancer
+
+
+
+
+
+
+
+
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  labels:
+#    app: learn-to-fly-with-concourse
+#  name: pod-learn-to-fly
+#  namespace: default
+#spec:
+#  containers:
+#  - image: harbor.vraccoon.lab/library/learn-to-fly@IMAGE
+#    name: learn-to-fly-with-concourse
+#    imagePullPolicy: Always#
+
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  labels:
+#    app: learn-to-fly-with-concourse
+#  name: svc-learn-to-fly-with-concourse
+#spec:
+#  ports:
+#  - port: 80
+#    protocol: TCP
+#    targetPort: 80
+#  selector:
+#    app: learn-to-fly-with-concourse
+#  type: LoadBalancer
