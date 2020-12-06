@@ -33,39 +33,3 @@ spec:
   selector:
     app: learn-to-fly
   type: LoadBalancer
-
-
-
-
-
-
-
-
-#apiVersion: v1
-#kind: Pod
-#metadata:
-#  labels:
-#    app: learn-to-fly-with-concourse
-#  name: pod-learn-to-fly
-#  namespace: default
-#spec:
-#  containers:
-#  - image: harbor.vraccoon.lab/library/learn-to-fly@IMAGE
-#    name: learn-to-fly-with-concourse
-#    imagePullPolicy: Always#
-
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  labels:
-#    app: learn-to-fly-with-concourse
-#  name: svc-learn-to-fly-with-concourse
-#spec:
-#  ports:
-#  - port: 80
-#    protocol: TCP
-#    targetPort: 80
-#  selector:
-#    app: learn-to-fly-with-concourse
-#  type: LoadBalancer

@@ -12,10 +12,10 @@ curl -k --silent \
  -X GET "https://harbor.vraccoon.lab/api/v2.0/projects/library/repositories/learn-to-fly/artifacts?page=1&page_size=10&with_tag=true&with_label=false&with_scan_overview=false&with_signature=false&with_immutable_status=false" \
  -H "accept: application/json" \
  -H 'authorization: Basic YWRtaW46UGFzc3dvcmQxMjMhCg==' \
- -o body.json
+ -o harbor-output.json
 
 ## Get latest Digest
-digest=$(jq '.[0].digest' body.json -r)
+digest=$(jq '.[0].digest' harbor-output.json -r)
 
 
 ## Modify the image key within the deployment file
