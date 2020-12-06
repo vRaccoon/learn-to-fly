@@ -1,3 +1,4 @@
+### Resource Definition for K8s
 resource_types:
   - name: k8s-resource
     type: docker-image
@@ -5,6 +6,7 @@ resource_types:
       repository: jgriff/k8s-resource
 
 resources:
+### Resource for Git
   - name: r-git
     type: git
     icon: github
@@ -12,7 +14,7 @@ resources:
       uri: https://github.com/vRaccoon/learn-to-fly.git
       branch: master
 
-
+### Resource for Harbor
   - name: r-harbor
     type: docker-image
     icon: oci
@@ -46,7 +48,7 @@ resources:
  
 
 
-
+### Ressource for K8s Cluster
   - name: r-k8s-cluster
     type: k8s-resource
     icon: kubernetes
