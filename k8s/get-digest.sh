@@ -9,7 +9,7 @@ cp r-git/k8s/deployment.yml e-modified-deployment/deployment.yml
 #!/bin/bash
 
 curl -k --silent \
- -X GET "https://harbor.vraccoon.lab/api/v2.0/projects/library/repositories/learn-to-fly/artifacts?page=1&page_size=10&with_tag=true&with_label=false&with_scan_overview=false&with_signature=false&with_immutable_status=false" \
+ -X GET "https://tanzu-harbor.vraccoon.lab/api/v2.0/projects/library/repositories/learn-to-fly/artifacts?page=1&page_size=10&with_tag=true&with_label=false&with_scan_overview=false&with_signature=false&with_immutable_status=false" \
  -H "accept: application/json" \
  -H 'authorization: Basic YWRtaW46UGFzc3dvcmQxMjMhCg==' \
  -o harbor-output.json
