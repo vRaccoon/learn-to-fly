@@ -15,7 +15,7 @@ spec:
         app: learn-to-fly
     spec:
       containers:
-      - image: harbor.vraccoon.lab/library/learn-to-fly@IMAGE
+      - image: tanzu-harbor.vraccoon.lab/library/learn-to-fly@IMAGE
         name: learn-to-fly
 
 ---
